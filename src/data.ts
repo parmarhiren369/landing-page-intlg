@@ -1,7 +1,6 @@
 import authorKevinImage from './assets/web-development/author kevin.png';
-import recruitmentTwoImage from './assets/web-development/recruitment 2.png';
+import baconLegalImage from './assets/web-development/bacon legal recruitment.png';
 import recruitmentImage from './assets/web-development/recruitment.png';
-import intlgImage from './assets/web-development/intlg.png';
 import worldBridgePartnersImage from './assets/web-development/world bridge partners.png';
 import scippInternationalImage from './assets/web-development/scipp international.png';
 import p3Image from './assets/web-development/p3.png';
@@ -123,17 +122,17 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
 
   {
     id: 'p2',
-    title: 'Recruitment Website',
+    title: 'Bacon Legal Recruiting Website',
     category: 'Web Development',
-    tags: ['Design', 'Development', 'Recruitment'],
+    tags: ['Legal Search', 'Design', 'Development'],
     imageType: 'laptop-web',
-    image: recruitmentTwoImage,
-    websiteUrl: 'https://bacon-tamplate2.netlify.app/',
-    headline: 'RECRUITMENT WEBSITE',
-    subheadline: 'Modern recruitment website experience',
+    image: baconLegalImage,
+    websiteUrl: 'https://bacon-legal-recruitment.vercel.app/',
+    headline: 'ATTORNEY SEARCH EXPERTS',
+    subheadline: 'Bacon Legal Recruiting digital experience',
     badge: 'Live Website',
     description:
-      'A modern recruitment website designed for clear navigation, strong branding, and candidate engagement.',
+      'A distinguished legal recruiting platform designed for confidential attorney placement, national reach, and executive legal talent acquisition.',
   },
 
   {
@@ -153,21 +152,6 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
 
   {
     id: 'p4',
-    title: 'INTLG Website',
-    category: 'Web Development',
-    tags: ['Branding', 'Design', 'Development'],
-    imageType: 'laptop-web',
-    image: intlgImage,
-    websiteUrl: 'https://intlg.com/',
-    headline: 'INTLG WEBSITE',
-    subheadline: 'Corporate website and digital experience',
-    badge: 'Live Website',
-    description:
-      'A professional corporate website with modern layouts, responsive design, and clear messaging.',
-  },
-
-  {
-    id: 'p5',
     title: 'WorldBridge Partners Website',
     category: 'Web Development',
     tags: ['Strategy', 'Design', 'Development'],
@@ -182,7 +166,7 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
   },
 
   {
-    id: 'p6',
+    id: 'p5',
     title: 'SCIPP International Website',
     category: 'Web Development',
     tags: ['Education', 'Design', 'Development'],
@@ -197,7 +181,7 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
   },
 
   {
-    id: 'p7',
+    id: 'p6',
     title: 'P3 Recruiter Website',
     category: 'Web Development',
     tags: ['Branding', 'Design', 'Development'],
@@ -377,15 +361,15 @@ export const WEB_DEVELOPMENT_IMAGES: SocialMediaImage[] = [
 
   {
     id: 'wd-2',
-    title: 'Recruitment Website',
+    title: 'Bacon Legal Recruiting Website',
     campaign: 'Website Development',
     category: 'Web Development',
     platform: 'Omnichannel',
-    imageUrl: getWebDevelopmentImage('recruitment 2.png'),
-    websiteUrl: 'https://bacon-tamplate2.netlify.app/',
-    headline: 'RECRUITMENT WEBSITE',
-    caption: 'Recruitment website design and development.',
-    tags: ['Recruitment', 'Design', 'Development'],
+    imageUrl: getWebDevelopmentImage('bacon legal recruitment.png'),
+    websiteUrl: 'https://bacon-legal-recruitment.vercel.app/',
+    headline: 'BACON LEGAL RECRUITING WEBSITE',
+    caption: 'Bacon Legal Recruiting website design and development.',
+    tags: ['Legal Recruiting', 'Design', 'Development'],
   },
 
   {
@@ -403,19 +387,6 @@ export const WEB_DEVELOPMENT_IMAGES: SocialMediaImage[] = [
 
   {
     id: 'wd-4',
-    title: 'INTLG Website',
-    campaign: 'Website Development',
-    category: 'Web Development',
-    platform: 'Omnichannel',
-    imageUrl: getWebDevelopmentImage('intlg.png'),
-    websiteUrl: 'https://intlg.com/',
-    headline: 'INTLG WEBSITE',
-    caption: 'INTLG website design and development.',
-    tags: ['Corporate', 'Branding', 'Development'],
-  },
-
-  {
-    id: 'wd-5',
     title: 'WorldBridge Partners Website',
     campaign: 'Website Development',
     category: 'Web Development',
@@ -428,7 +399,7 @@ export const WEB_DEVELOPMENT_IMAGES: SocialMediaImage[] = [
   },
 
   {
-    id: 'wd-6',
+    id: 'wd-5',
     title: 'SCIPP International Website',
     campaign: 'Website Development',
     category: 'Web Development',
@@ -441,7 +412,7 @@ export const WEB_DEVELOPMENT_IMAGES: SocialMediaImage[] = [
   },
 
   {
-    id: 'wd-7',
+    id: 'wd-6',
     title: 'P3 Recruiter Website',
     campaign: 'Website Development',
     category: 'Web Development',
