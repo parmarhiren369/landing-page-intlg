@@ -1,122 +1,66 @@
 import React, { useState } from 'react';
+import { NavigationProvider, useNavigation } from './context/NavigationContext';
 import { Navbar } from './components/Navbar';
-import { HeroSection } from './components/HeroSection';
-import { ServicesSection } from './components/ServicesSection';
-import { PortfolioSection } from './components/PortfolioSection';
-import { ImpactSection } from './components/ImpactSection';
-import { ProcessSection } from './components/ProcessSection';
-import { TestimonialsSection } from './components/TestimonialsSection';
-import { CTASection } from './components/CTASection';
 import { Footer } from './components/Footer';
+import { HomePage } from './pages/HomePage';
+import { PricingPage } from './pages/PricingPage';
+import { ServicesPage } from './pages/ServicesPage';
+import { PortfolioPage } from './pages/PortfolioPage';
+import { WhyLegacyPage } from './pages/WhyLegacyPage';
+import { TestimonialsPage } from './pages/TestimonialsPage';
+import { ContactPage } from './pages/ContactPage';
 import { ContactModal } from './components/ContactModal';
-import { PortfolioModal } from './components/PortfolioModal';
-import { PortfolioItem } from './types';
-import { PORTFOLIO_DATA } from './data';
 
-export default function App() {
-  const [contactModalOpen, setContactModalOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState<string>('');
-  const [portfolioModalOpen, setPortfolioModalOpen] = useState(false);
-  const [selectedPortfolioItem, setSelectedPortfolioItem] = useState<PortfolioItem | null>(null);
+const AppContent: React.FC = () => {
+  const { currentPage } = useNavigation();
+  const [quickContactOpen, setQuickContactOpen] = useState(false);
 
-  const handleOpenContact = (serviceTitle?: string) => {
-    if (serviceTitle) {
-      setSelectedService(serviceTitle);
-    }
-    setContactModalOpen(true);
-  };
-
-  const handleExploreWork = () => {
-    const portfolioEl = document.getElementById('portfolio');
-    if (portfolioEl) {
-      portfolioEl.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleSelectPortfolioItem = (item: PortfolioItem) => {
-    setSelectedPortfolioItem(item);
-    setPortfolioModalOpen(true);
-  };
-
-  const handleViewAllPortfolio = () => {
-    setSelectedPortfolioItem(null);
-    setPortfolioModalOpen(true);
-  };
-
-  const handleOpenSocialMedia = () => {
-    const smItem = PORTFOLIO_DATA.find((p) => p.category === 'Social Media');
-    if (smItem) {
-      setSelectedPortfolioItem(smItem);
-      setPortfolioModalOpen(true);
+  const renderCurrentPage = () => {
+    switch (currentPage) {
+      case 'pricing':
+        return <PricingPage />;
+      case 'services':
+        return <ServicesPage />;
+      case 'portfolio':
+        return <PortfolioPage />;
+      case 'why-legacy':
+        return <WhyLegacyPage />;
+      case 'testimonials':
+        return <TestimonialsPage />;
+      case 'contact':
+        return <ContactPage />;
+      case 'home':
+      default:
+        return <HomePage onOpenContactModal={() => setQuickContactOpen(true)} />;
     }
   };
 
   return (
     <div className="min-h-screen bg-white flex flex-col selection:bg-[#EE7F23]/20 selection:text-[#0e1e38]">
-      {/* SECTION 1 — HEADER */}
-      <Navbar onOpenContact={() => handleOpenContact()} />
+      {/* PERSISTENT HEADER NAVIGATION WITH ACTIVE TAB UNDERLINE */}
+      <Navbar onOpenContactModal={() => setQuickContactOpen(true)} />
 
-      {/* MAIN CONTENT IN EXACT SPECIFIED ORDER */}
+      {/* DEDICATED PAGE CONTENT */}
       <main className="flex-grow">
-        {/* SECTION 2 — HERO */}
-        <HeroSection
-          onWorkTogether={() => handleOpenContact()}
-          onExploreWork={handleExploreWork}
-          onOpenSocialMedia={handleOpenSocialMedia}
-          onSelectPlan={(planName) => handleOpenContact(`${planName} Plan`)}
-        />
-
-        {/* SECTION 3 — SERVICES */}
-        <ServicesSection
-          onSelectService={(title) => {
-            if (title === 'Social Media Management') {
-              handleOpenSocialMedia();
-            } else {
-              handleOpenContact(title);
-            }
-          }}
-        />
-
-        {/* SECTION 4 — FEATURED WORK */}
-        <PortfolioSection
-          onSelectPortfolioItem={handleSelectPortfolioItem}
-          onViewAllPortfolio={handleViewAllPortfolio}
-          onGetInTouch={() => handleOpenContact('Social Media Management')}
-        />
-
-        {/* SECTION 5 — IMPACT IN NUMBERS */}
-        <ImpactSection />
-
-        {/* SECTION 6 — OUR PROCESS */}
-        <ProcessSection />
-
-        {/* SECTION 7 — TESTIMONIALS */}
-        <TestimonialsSection />
-
-        {/* SECTION 8 — CTA */}
-        <CTASection onGetInTouch={() => handleOpenContact()} />
+        {renderCurrentPage()}
       </main>
 
-      {/* SECTION 9 — FOOTER */}
+      {/* PERSISTENT FOOTER */}
       <Footer />
 
-      {/* INTERACTIVE MODALS */}
+      {/* QUICK CONTACT MODAL IF TRIGGERED */}
       <ContactModal
-        isOpen={contactModalOpen}
-        onClose={() => setContactModalOpen(false)}
-        initialService={selectedService}
-      />
-
-      <PortfolioModal
-        isOpen={portfolioModalOpen}
-        onClose={() => setPortfolioModalOpen(false)}
-        selectedItem={selectedPortfolioItem}
-        onSelectAnotherItem={(item) => setSelectedPortfolioItem(item)}
-        onGetInTouch={() => {
-          setPortfolioModalOpen(false);
-          handleOpenContact();
-        }}
+        isOpen={quickContactOpen}
+        onClose={() => setQuickContactOpen(false)}
       />
     </div>
+  );
+};
+
+export default function App() {
+  return (
+    <NavigationProvider>
+      <AppContent />
+    </NavigationProvider>
   );
 }
