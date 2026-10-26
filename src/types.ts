@@ -3,6 +3,22 @@ export interface ServiceItem {
   title: string;
   description: string;
   iconName: string;
+  isComplimentary?: boolean;
+  complimentaryBadge?: string;
+}
+
+export interface PricingPlan {
+  id: string;
+  name: string;
+  price: string;
+  period: string;
+  originalNote?: string;
+  badge?: string;
+  isPopular?: boolean;
+  tagline?: string;
+  ctaText: string;
+  features: string[];
+  complimentaryFeatures?: string[];
 }
 
 export interface PortfolioItem {

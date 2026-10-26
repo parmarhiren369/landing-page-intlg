@@ -31,17 +31,30 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onClick }) =>
   return (
     <div
       onClick={onClick}
-      className="group bg-white rounded-2xl p-6 sm:p-7 border border-slate-100 shadow-[0_2px_10px_rgba(15,23,42,0.03)] hover:shadow-[0_12px_24px_rgba(15,23,42,0.07)] hover:border-orange-100 transition-all duration-300 flex flex-col items-center text-center h-full cursor-pointer hover:-translate-y-1"
+      className="group relative bg-white rounded-2xl p-6 sm:p-7 border border-slate-100 shadow-[0_2px_10px_rgba(15,23,42,0.03)] hover:shadow-[0_12px_24px_rgba(15,23,42,0.07)] hover:border-orange-200 transition-all duration-300 flex flex-col items-center text-center h-full cursor-pointer hover:-translate-y-1"
     >
+      {/* Complimentary Badge */}
+      {service.isComplimentary && (
+        <div className="mb-3 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/60 text-[10px] font-bold tracking-wider uppercase">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span>Complimentary • Free</span>
+        </div>
+      )}
+
       {/* Soft Orange Circular Icon Badge */}
       <div className="w-14 h-14 rounded-full bg-[#FFF0E5] group-hover:bg-[#FFE5D3] flex items-center justify-center mb-5 transition-colors duration-200 border border-orange-100/60 flex-shrink-0">
         {getIcon()}
       </div>
 
       {/* Title */}
-      <h3 className="font-sans font-bold text-base sm:text-[16.5px] text-[#0e1e38] group-hover:text-[#EE7F23] transition-colors leading-snug mb-3">
+      <h3 className="font-sans font-bold text-base sm:text-[16.5px] text-[#0e1e38] group-hover:text-[#EE7F23] transition-colors leading-snug mb-2">
         {service.title}
       </h3>
+
+      {/* Complimentary notice */}
+      <p className="text-[11px] font-semibold text-[#EE7F23] mb-2 uppercase tracking-wide">
+        Included Free With Subscription
+      </p>
 
       {/* Description */}
       <p className="text-slate-500 text-[13px] sm:text-[13.5px] leading-relaxed flex-grow">

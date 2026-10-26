@@ -11,15 +11,16 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
     <section id="services" className="bg-white py-16 sm:py-20 border-t border-slate-100/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <span className="text-xs sm:text-[13px] font-bold tracking-[0.22em] text-[#EE7F23] uppercase block mb-3">
-            OUR SERVICES
-          </span>
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-4 shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+            <span>100% Complimentary Digital Services</span>
+          </div>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#0e1e38] tracking-tight leading-tight mb-4">
-            Everything You Need to Grow Online
+            Everything You Need to Dominate Online — Included Free
           </h2>
           <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            From strategy to execution, we deliver end-to-end digital solutions tailored to your business goals.
+            All website design, development, social media campaigns, SEO, and graphics are <span className="font-semibold text-[#EE7F23]">completely complimentary</span> with any Dedicated Assistant or Research Support plan.
           </p>
         </div>
 

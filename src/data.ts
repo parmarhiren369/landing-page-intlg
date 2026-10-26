@@ -6,6 +6,7 @@ import scippInternationalImage from './assets/web-development/scipp internationa
 import p3Image from './assets/web-development/p3.png';
 import {
   ServiceItem,
+  PricingPlan,
   PortfolioItem,
   StatisticItem,
   ProcessStep,
@@ -52,7 +53,130 @@ const getWebDevelopmentImage = (filename: string): string => {
 };
 
 /* =========================================================
-   SERVICES DATA
+   PRICING & PLANS DATA
+   ========================================================= */
+
+export const PRICING_PLANS: PricingPlan[] = [
+  {
+    id: 'free-trial',
+    name: 'FREE TRIAL',
+    price: '$0',
+    period: '/Month',
+    badge: '100% Free Trial',
+    ctaText: 'Get Started',
+    tagline: 'Zero commitment test drive for recruitment leaders',
+    features: [
+      'Dedicated Virtual Assistant',
+      'Database Maintenance (50 Records/Day)',
+      'Company List Building (50 Companies/Day)',
+      'Email Validation (50 Emails/Day)',
+      'Hiring Authority List (50 HAs/Day)',
+      'Candidate Sourcing (10 Profiles/Day)',
+      'Job Postings & Response Management',
+      'Social Media Outreach',
+      'LinkedIn Network Growth',
+      'Job Searches List (50 Jobs/Day)',
+      'Daily Status Reports',
+      'Weekly Strategy Meetings',
+    ],
+    complimentaryFeatures: [
+      'Complimentary Digital & Social Media Audit',
+      'Dedicated Strategy & Workflow Setup',
+    ],
+  },
+  {
+    id: 'half-time',
+    name: 'Half-Time',
+    price: '$750',
+    period: '/month',
+    originalNote: 'Half-Time is now $750/month',
+    ctaText: 'Subscribe',
+    tagline: 'Dedicated Virtual Assistant (20 Hours/Week)',
+    features: [
+      'Dedicated Virtual Assistant',
+      'Candidate Sourcing',
+      'Hiring Authority List',
+      'Company List Building',
+      'Email & Phone Validation',
+      'Database Maintenance',
+      'Job Postings & Response Management',
+      'Job Searches for Business Development',
+      'MPC Marketing Campaigns',
+      'LinkedIn Network Growth',
+      'Emails & Drip Campaigns',
+      'Daily Status Reports',
+      'Weekly Strategy Meetings',
+    ],
+    complimentaryFeatures: [
+      'Social Media Content Marketing - Free',
+      'Website & Graphic Support - Free',
+      'SEO & Content Writing - Free',
+      'Commercial Video & Graphic Content - Free',
+      'Technical Support - Free',
+      'Blogs & Newsletter Management - Free',
+    ],
+  },
+  {
+    id: 'full-time',
+    name: 'Full-Time',
+    price: '$1,200',
+    period: '/month',
+    originalNote: 'Full-Time is now $1,200/month',
+    badge: 'Most Popular',
+    isPopular: true,
+    ctaText: 'Subscribe',
+    tagline: 'Full-Time Dedicated Assistant (40 Hours/Week)',
+    features: [
+      'Dedicated Virtual Assistant',
+      'Candidate Sourcing',
+      'Hiring Authority List',
+      'Company List Building',
+      'Email & Phone Validation',
+      'Database Maintenance',
+      'Job Postings & Response Management',
+      'Job Searches for Business Development',
+      'MPC Marketing Campaigns',
+      'LinkedIn Network Growth',
+      'Emails & Drip Campaigns',
+      'Daily Status Reports',
+      'Weekly Strategy Meetings',
+    ],
+    complimentaryFeatures: [
+      'Social Media Content Marketing - Free',
+      'Website & Graphic Support - Free',
+      'SEO & Content Writing - Free',
+      'Commercial Video & Graphic Content - Free',
+      'Technical Support - Free',
+      'Blogs & Newsletter Management - Free',
+    ],
+  },
+  {
+    id: 'advanced-research',
+    name: 'ADVANCED RESEARCH SUPPORT',
+    price: '$10',
+    period: '/Hour',
+    badge: 'Project Basis',
+    ctaText: 'Get Started',
+    tagline: 'On-Demand Flexible Recruitment & Research',
+    features: [
+      'Project Basis Dedicated Research Support',
+      'Targeted Candidate Sourcing & Vetting',
+      'Hiring Authority List Generation',
+      'Company List Building & Market Mapping',
+      'Email & Phone Validation',
+      'Job Searches for Business Development',
+      'Daily Status Reports',
+      'Weekly Strategy Meetings',
+    ],
+    complimentaryFeatures: [
+      'Website & Digital Footprint Guidance - Free',
+      'Commercial Campaign Consultation - Free',
+    ],
+  },
+];
+
+/* =========================================================
+   SERVICES DATA (COMPLIMENTARY WITH PLANS)
    ========================================================= */
 
 export const SERVICES_DATA: ServiceItem[] = [
@@ -62,6 +186,8 @@ export const SERVICES_DATA: ServiceItem[] = [
     description:
       'Modern, responsive and user-friendly websites that convert visitors into customers.',
     iconName: 'monitor',
+    isComplimentary: true,
+    complimentaryBadge: 'COMPLIMENTARY • FREE',
   },
   {
     id: 'social-media',
@@ -69,34 +195,44 @@ export const SERVICES_DATA: ServiceItem[] = [
     description:
       'Strategic content, creative campaigns and community growth across all platforms.',
     iconName: 'megaphone',
+    isComplimentary: true,
+    complimentaryBadge: 'COMPLIMENTARY • FREE',
   },
   {
     id: 'seo-content',
-    title: 'SEO & Content',
+    title: 'SEO & Content Writing',
     description:
-      'Improve your search rankings with optimized content and proven SEO strategies.',
+      'Improve your search rankings with optimized content, blogs and proven SEO strategies.',
     iconName: 'search',
+    isComplimentary: true,
+    complimentaryBadge: 'COMPLIMENTARY • FREE',
   },
   {
     id: 'graphic-branding',
     title: 'Graphic Design & Branding',
     description:
-      'Creative designs that make your brand stand out.',
+      'Creative designs, digital assets and brand visuals that make your company stand out.',
     iconName: 'pen-tool',
+    isComplimentary: true,
+    complimentaryBadge: 'COMPLIMENTARY • FREE',
   },
   {
     id: 'email-marketing',
-    title: 'Email Marketing',
+    title: 'Emails & Drip Campaigns',
     description:
-      'Engage your audience with targeted and result-driven email campaigns.',
+      'Engage hiring authorities and candidates with targeted, result-driven email campaigns.',
     iconName: 'mail',
+    isComplimentary: true,
+    complimentaryBadge: 'COMPLIMENTARY • FREE',
   },
   {
     id: 'website-maintenance',
-    title: 'Website Maintenance',
+    title: 'Website & Technical Support',
     description:
-      'Reliable support to keep your website secure, updated and running smoothly.',
+      'Reliable support to keep your web platforms secure, updated, optimized and running smoothly.',
     iconName: 'settings',
+    isComplimentary: true,
+    complimentaryBadge: 'COMPLIMENTARY • FREE',
   },
 ];
 

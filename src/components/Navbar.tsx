@@ -38,7 +38,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact }) => {
 
   const navLinks = [
     { name: 'Home', href: '#home', id: 'home' },
-    { name: 'Our Services', href: '#services', id: 'services' },
+    { name: 'Plans & Pricing', href: '#pricing', id: 'pricing' },
+    { name: 'Complimentary Services', href: '#services', id: 'services' },
     { name: 'Portfolio', href: '#portfolio', id: 'portfolio' },
     { name: 'Why Legacy', href: '#impact', id: 'impact' },
     { name: 'Testimonials', href: '#testimonials', id: 'testimonials' },

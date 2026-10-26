@@ -63,6 +63,7 @@ export default function App() {
           onWorkTogether={() => handleOpenContact()}
           onExploreWork={handleExploreWork}
           onOpenSocialMedia={handleOpenSocialMedia}
+          onSelectPlan={(planName) => handleOpenContact(`${planName} Plan`)}
         />
 
         {/* SECTION 3 — SERVICES */}

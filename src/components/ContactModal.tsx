@@ -60,13 +60,17 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   };
 
   const servicesList = [
-    'Website Design & Development',
-    'Social Media Management',
-    'SEO & Content',
-    'Graphic Design & Branding',
-    'Email Marketing',
-    'Website Maintenance',
-    'Custom Project / Other',
+    'Full-Time Plan ($1,200/month) - Most Popular',
+    'Half-Time Plan ($750/month)',
+    'FREE TRIAL ($0/month)',
+    'ADVANCED RESEARCH SUPPORT ($10/Hour)',
+    'Website Design & Development (Complimentary)',
+    'Social Media Management (Complimentary)',
+    'SEO & Content Writing (Complimentary)',
+    'Graphic Design & Branding (Complimentary)',
+    'Emails & Drip Campaigns (Complimentary)',
+    'Website & Technical Support (Complimentary)',
+    'Custom Project / Consultation',
   ];
 
   return (
