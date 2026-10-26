@@ -10,6 +10,7 @@ export interface ServiceItem {
 export interface PricingPlan {
   id: string;
   name: string;
+  originalPrice?: string;
   price: string;
   period: string;
   originalNote?: string;

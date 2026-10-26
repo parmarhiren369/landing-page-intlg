@@ -24,8 +24,8 @@ export const TestimonialsSection: React.FC = () => {
               className="bg-white rounded-2xl p-7 sm:p-8 border border-slate-100 shadow-[0_2px_12px_rgba(15,23,42,0.03)] hover:shadow-[0_12px_24px_rgba(15,23,42,0.06)] transition-all duration-300 flex flex-col justify-between"
             >
               <div>
-                {/* Large Orange Quotation Mark matching reference */}
-                <div className="text-4xl sm:text-5xl font-serif text-[#EE7F23] leading-none mb-3 font-bold select-none">
+                {/* Large Orange Quotation Mark */}
+                <div className="text-4xl sm:text-5xl text-[#EE7F23] leading-none mb-3 font-bold select-none font-sans">
                   “
                 </div>
 

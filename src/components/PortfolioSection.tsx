@@ -126,7 +126,7 @@ export const PortfolioSection: React.FC<PortfolioSectionProps> = ({
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>Omnichannel Social Media Campaigns</span>
                 </div>
-                <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">
+                <h3 className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight mb-2">
                   IDEAS. PEOPLE. IMPACT.
                 </h3>
                 <p className="text-slate-300 text-sm sm:text-base leading-relaxed">

@@ -127,7 +127,7 @@ export const ImageLightboxModal: React.FC<ImageLightboxModalProps> = ({
             </div>
 
             {/* Headline & Title */}
-            <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight mb-3">
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight mb-3">
               {image.headline}
             </h3>
 

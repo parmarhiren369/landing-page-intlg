@@ -51,7 +51,7 @@ export const ImpactSection: React.FC = () => {
                 </div>
 
                 {/* Orange Statistic Value */}
-                <div className="font-sans text-3xl sm:text-[38px] lg:text-[42px] font-extrabold text-[#EE7F23] tracking-tight leading-none mb-2">
+                <div className="font-sans text-3xl sm:text-[38px] lg:text-[42px] font-bold text-[#EE7F23] tracking-tight leading-none mb-2">
                   {stat.value}
                 </div>
 

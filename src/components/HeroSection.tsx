@@ -2,7 +2,7 @@ import React from 'react';
 import { HeroVisual } from './HeroVisual';
 import { PricingSection } from './PricingSection';
 import { HERO_SERVICE_TICKER } from '../data';
-import { ArrowRight, Sparkles, Gift } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface HeroSectionProps {
   onWorkTogether: () => void;
@@ -36,16 +36,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left Content Column */}
           <div className="lg:col-span-6 xl:col-span-6 z-10">
-            {/* Eyebrow with Complimentary Perk Callout */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[#EE7F23] mb-4 sm:mb-5">
-              <Sparkles className="w-3.5 h-3.5 text-[#EE7F23]" />
-              <span className="text-[11px] sm:text-[12px] font-bold tracking-[0.18em] uppercase">
-                DEDICATED ASSISTANTS & RESEARCH SUPPORT
-              </span>
-            </div>
-
             {/* Main Headline */}
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-[54px] xl:text-[60px] font-extrabold text-[#0e1e38] leading-[1.08] tracking-tight mb-5 sm:mb-6">
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-[54px] xl:text-[60px] font-bold text-[#0e1e38] leading-[1.12] tracking-tight mb-5 sm:mb-6">
               Real Solutions. <br />
               <span className="text-[#EE7F23]">Real Results.</span> <br />
               For Your Growth.
@@ -80,12 +72,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               >
                 Explore Portfolio
               </button>
-            </div>
-
-            {/* Complimentary Highlight Tag */}
-            <div className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-800 bg-emerald-50/90 border border-emerald-200/70 px-3.5 py-2 rounded-xl">
-              <Gift className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-              <span>Free websites, graphics, commercial content & social media included</span>
             </div>
           </div>
 

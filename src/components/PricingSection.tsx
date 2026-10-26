@@ -17,7 +17,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
           <span>Special Offer: Digital Services Included Complimentary</span>
         </div>
 
-        <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0e1e38] tracking-tight leading-tight mb-4">
+        <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0e1e38] tracking-tight leading-tight mb-4">
           Dedicated Virtual Assistant & Research Support Plans
         </h2>
 
@@ -74,25 +74,30 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
               )}
 
               {/* Header */}
-              <div className="p-6 pb-5 border-b border-slate-100 flex flex-col justify-between">
-                <div>
-                  <h3 className="font-display text-lg font-bold text-[#0e1e38] uppercase tracking-wide">
+              <div className="p-6 pb-5 border-b border-slate-100 flex flex-col justify-between text-center">
+                <div className="text-center">
+                  <h3 className="font-display text-lg font-bold text-[#0e1e38] uppercase tracking-wide text-center">
                     {plan.name}
                   </h3>
                   {plan.originalNote ? (
-                    <p className="text-[12px] font-semibold text-[#EE7F23] mt-0.5">
+                    <p className="text-[12px] font-semibold text-[#EE7F23] mt-0.5 text-center">
                       {plan.originalNote}
                     </p>
                   ) : (
-                    <p className="text-[12px] text-slate-500 mt-0.5 min-h-[18px]">
+                    <p className="text-[12px] text-slate-500 mt-0.5 min-h-[18px] text-center">
                       {plan.tagline}
                     </p>
                   )}
                 </div>
 
                 {/* Price Display */}
-                <div className="mt-4 flex items-baseline gap-1">
-                  <span className="font-display text-3xl sm:text-4xl font-extrabold text-[#0e1e38] tracking-tight">
+                <div className="mt-4 flex flex-wrap items-baseline justify-center gap-1.5 sm:gap-2">
+                  {plan.originalPrice && (
+                    <span className="text-slate-400 line-through text-sm sm:text-base font-semibold tracking-tight">
+                      {plan.originalPrice}
+                    </span>
+                  )}
+                  <span className="font-display text-3xl sm:text-4xl font-bold text-[#0e1e38] tracking-tight">
                     {plan.price}
                   </span>
                   <span className="text-slate-500 text-sm font-medium">
@@ -120,13 +125,24 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
               <div className="p-6 flex-1 flex flex-col justify-between space-y-5">
                 <div>
                   <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-3">
-                    Core Deliverables Included:
+                    Deliverables & Services Included:
                   </span>
                   <ul className="space-y-2.5 text-xs sm:text-[13px] text-slate-700">
                     {plan.features.map((feat, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <Check className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5 stroke-[2.5]" />
-                        <span className="leading-snug">{feat}</span>
+                        <span className="leading-snug">
+                          {feat.includes('- Free') ? (
+                            <>
+                              <span>{feat.replace('- Free', '').trim()}</span>{' '}
+                              <span className="inline-flex items-center font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-1.5 py-0.2 rounded text-[10px] tracking-wide">
+                                - Free
+                              </span>
+                            </>
+                          ) : (
+                            feat
+                          )}
+                        </span>
                       </li>
                     ))}
                   </ul>
