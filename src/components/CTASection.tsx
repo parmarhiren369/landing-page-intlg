@@ -56,13 +56,15 @@ export const CTASection: React.FC<CTASectionProps> = ({ onGetInTouch }) => {
             </p>
 
             {/* CTA Button */}
-            <button
-              onClick={onGetInTouch}
+            <a
+              href="https://calendly.com/raj-kapoor"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center justify-center gap-2.5 bg-[#EE7F23] hover:bg-[#de7016] active:bg-[#c9610f] text-white text-base font-semibold px-8 py-3.5 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer"
             >
               <span>Get in Touch</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-            </button>
+            </a>
           </div>
 
           {/* Right Decorative Handwritten Script */}

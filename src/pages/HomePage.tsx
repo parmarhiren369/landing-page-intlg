@@ -119,62 +119,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenContactModal }) => {
         </div>
       </section>
 
-      {/* ================= COMPLIMENTARY SERVICES TEASER ================= */}
-      <section className="bg-slate-50/70 py-16 sm:py-20 border-t border-slate-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-3">
-                <Gift className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Zero Additional Fee</span>
-              </div>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#0e1e38] tracking-tight mb-2">
-                Complimentary Services with Every Plan
-              </h2>
-              <p className="text-slate-600 text-base max-w-xl">
-                Unlike traditional agencies that charge thousands extra, we bundle our full digital agency suite with your dedicated assistant subscription.
-              </p>
-            </div>
-
-            <button
-              onClick={() => navigateTo('services')}
-              className="group inline-flex items-center gap-2 text-base font-bold text-[#0e1e38] hover:text-[#EE7F23] transition-colors py-1 cursor-pointer flex-shrink-0"
-            >
-              <span>Explore Dedicated Services Page</span>
-              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES_DATA.slice(0, 6).map((service) => (
-              <div
-                key={service.id}
-                onClick={() => navigateTo('services', { preselectedService: service.title })}
-                className="bg-white rounded-xl p-6 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-orange-200 transition-all cursor-pointer group flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-[10px] font-bold tracking-wider uppercase bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-md border border-emerald-200/60">
-                      FREE WITH PLAN
-                    </span>
-                    <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-[#EE7F23] group-hover:translate-x-1 transition-all" />
-                  </div>
-                  <h3 className="font-display text-lg font-bold text-[#0e1e38] group-hover:text-[#EE7F23] transition-colors mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#EE7F23]">
-                  <span>View Details & Deliverables</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ================= PLANS & PRICING SECTION ================= */}
       <section className="bg-white py-16 sm:py-20 border-t border-slate-100">

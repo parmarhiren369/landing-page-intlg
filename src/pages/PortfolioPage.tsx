@@ -328,7 +328,7 @@ export const PortfolioPage: React.FC = () => {
         onSelectAnotherItem={(item) => setSelectedPortfolioModalItem(item)}
         onGetInTouch={() => {
           setSelectedPortfolioModalItem(null);
-          navigateTo('contact');
+          window.open('https://calendly.com/raj-kapoor', '_blank');
         }}
       />
     </div>

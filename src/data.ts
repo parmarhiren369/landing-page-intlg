@@ -1,5 +1,5 @@
 import authorKevinImage from './assets/web-development/author kevin.png';
-import baconLegalImage from './assets/web-development/bacon legal recruitment.png';
+import jodyHarkerImage from './assets/web-development/jody harker search.png';
 import recruitmentImage from './assets/web-development/recruitment.png';
 import worldBridgePartnersImage from './assets/web-development/world bridge partners.png';
 import scippInternationalImage from './assets/web-development/scipp international.png';
@@ -250,17 +250,17 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
 
   {
     id: 'p2',
-    title: 'Bacon Legal Recruiting Website',
+    title: 'Jody Harker Search Website',
     category: 'Web Development',
-    tags: ['Legal Search', 'Design', 'Development'],
+    tags: ['Executive Search', 'Design', 'Development'],
     imageType: 'laptop-web',
-    image: baconLegalImage,
-    websiteUrl: 'https://bacon-legal-recruitment.vercel.app/',
-    headline: 'ATTORNEY SEARCH EXPERTS',
-    subheadline: 'Bacon Legal Recruiting digital experience',
+    image: jodyHarkerImage,
+    websiteUrl: 'https://jodyharkersearch.com/',
+    headline: 'JODY HARKER SEARCH',
+    subheadline: 'Executive search and leadership consulting platform',
     badge: 'Live Website',
     description:
-      'A distinguished legal recruiting platform designed for confidential attorney placement, national reach, and executive legal talent acquisition.',
+      'A distinguished executive search website designed for executive leadership placement, candidate engagement, and strategic talent consulting.',
   },
 
   {
@@ -489,15 +489,15 @@ export const WEB_DEVELOPMENT_IMAGES: SocialMediaImage[] = [
 
   {
     id: 'wd-2',
-    title: 'Bacon Legal Recruiting Website',
+    title: 'Jody Harker Search Website',
     campaign: 'Website Development',
     category: 'Web Development',
     platform: 'Omnichannel',
-    imageUrl: getWebDevelopmentImage('bacon legal recruitment.png'),
-    websiteUrl: 'https://bacon-legal-recruitment.vercel.app/',
-    headline: 'BACON LEGAL RECRUITING WEBSITE',
-    caption: 'Bacon Legal Recruiting website design and development.',
-    tags: ['Legal Recruiting', 'Design', 'Development'],
+    imageUrl: getWebDevelopmentImage('jody harker search.png'),
+    websiteUrl: 'https://jodyharkersearch.com/',
+    headline: 'JODY HARKER SEARCH WEBSITE',
+    caption: 'Jody Harker Search website design and development.',
+    tags: ['Executive Search', 'Design', 'Development'],
   },
 
   {

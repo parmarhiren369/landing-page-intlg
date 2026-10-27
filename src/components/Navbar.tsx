@@ -56,13 +56,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center">
-            <button
-              onClick={() => handleNavClick('contact')}
+            <a
+              href="https://calendly.com/raj-kapoor"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center justify-center gap-2 bg-[#EE7F23] hover:bg-[#de7016] active:bg-[#c9610f] text-white text-[14.5px] font-semibold px-5 py-2.5 rounded-lg shadow-xs hover:shadow transition-all duration-200 cursor-pointer"
             >
               <span>Get in Touch</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-            </button>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -99,13 +101,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
             );
           })}
           <div className="pt-3 border-t border-slate-100">
-            <button
-              onClick={() => handleNavClick('contact')}
+            <a
+              href="https://calendly.com/raj-kapoor"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
               className="w-full flex items-center justify-center gap-2 bg-[#EE7F23] hover:bg-[#de7016] text-white font-semibold py-3 px-4 rounded-lg shadow-sm transition-all cursor-pointer"
             >
               <span>Get in Touch</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
         </div>
       )}

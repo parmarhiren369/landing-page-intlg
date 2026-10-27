@@ -14,6 +14,7 @@ import {
   User,
   MessageSquare,
   HelpCircle,
+  ExternalLink,
 } from 'lucide-react';
 
 export const ContactPage: React.FC = () => {
@@ -125,9 +126,15 @@ export const ContactPage: React.FC = () => {
                 <div>
                   <h4 className="font-bold text-sm text-[#0e1e38]">Free 30-Minute Video Consultation</h4>
                   <p className="text-xs text-slate-500 mt-0.5">Discuss your ATS, candidate criteria, and goals</p>
-                  <span className="text-xs text-[#0e1e38] font-semibold block mt-1">
-                    Available via Zoom, Google Meet, or Microsoft Teams
-                  </span>
+                  <a
+                    href="https://calendly.com/raj-kapoor"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 font-semibold text-xs sm:text-sm text-[#EE7F23] hover:underline mt-1.5"
+                  >
+                    <span>Schedule on Calendly (raj-kapoor)</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
                 </div>
               </div>
             </div>
