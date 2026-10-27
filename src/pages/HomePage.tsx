@@ -1,18 +1,14 @@
 import React from 'react';
 import { HeroVisual } from '../components/HeroVisual';
-import { HERO_SERVICE_TICKER, SERVICES_DATA, PORTFOLIO_DATA, PRICING_PLANS, TESTIMONIALS_DATA } from '../data';
+import { PricingSection } from '../components/PricingSection';
+import { HERO_SERVICE_TICKER, SERVICES_DATA, PORTFOLIO_DATA, TESTIMONIALS_DATA } from '../data';
 import { useNavigation } from '../context/NavigationContext';
 import {
   ArrowRight,
   Sparkles,
   Check,
-  Zap,
   Gift,
-  ShieldCheck,
   Star,
-  Users,
-  Briefcase,
-  TrendingUp,
   Layers,
   ChevronRight,
   ExternalLink,
@@ -24,6 +20,13 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onOpenContactModal }) => {
   const { navigateTo } = useNavigation();
+
+  const handleScrollToPricing = () => {
+    const el = document.getElementById('pricing');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="bg-white">
@@ -56,7 +59,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenContactModal }) => {
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 mb-8 sm:mb-10">
                 <button
-                  onClick={() => navigateTo('pricing')}
+                  onClick={handleScrollToPricing}
                   className="group inline-flex items-center justify-center gap-2 bg-[#EE7F23] hover:bg-[#de7016] active:bg-[#c9610f] text-white text-[15px] font-semibold px-6 sm:px-7 py-3.5 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer"
                 >
                   <span>View Plans & Pricing</span>
@@ -173,95 +176,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenContactModal }) => {
         </div>
       </section>
 
-      {/* ================= PLANS & PRICING PREVIEW ================= */}
+      {/* ================= PLANS & PRICING SECTION ================= */}
       <section className="bg-white py-16 sm:py-20 border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-50 text-[#EE7F23] text-xs font-bold uppercase tracking-wider mb-3">
-              <Zap className="w-3.5 h-3.5" />
-              <span>Special Reduced Rates</span>
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#0e1e38] tracking-tight mb-3">
-              Transparent, Scalable Support Plans
-            </h2>
-            <p className="text-slate-600 text-base">
-              Choose from full-time, half-time, hourly, or start right now with a 100% Free Trial.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-            {PRICING_PLANS.map((plan) => {
-              const isPopular = plan.id === 'full-time';
-              return (
-                <div
-                  key={plan.id}
-                  className={`rounded-2xl p-6 flex flex-col justify-between transition-all bg-white ${
-                    isPopular
-                      ? 'border-2 border-[#EE7F23] shadow-lg ring-4 ring-orange-500/5 -translate-y-1'
-                      : 'border border-slate-200/90 shadow-xs hover:shadow-md'
-                  }`}
-                >
-                  <div>
-                    {plan.badge && (
-                      <span className="inline-block text-[10px] font-bold uppercase tracking-wider bg-orange-100 text-[#EE7F23] px-2.5 py-0.5 rounded-full mb-3">
-                        {plan.badge}
-                      </span>
-                    )}
-                    <h3 className="font-display text-lg font-bold text-[#0e1e38] uppercase">
-                      {plan.name}
-                    </h3>
-                    <div className="mt-3 flex items-baseline gap-1.5">
-                      {plan.originalPrice && (
-                        <span className="text-slate-400 line-through text-sm">
-                          {plan.originalPrice}
-                        </span>
-                      )}
-                      <span className="font-display text-3xl font-bold text-[#0e1e38]">
-                        {plan.price}
-                      </span>
-                      <span className="text-slate-500 text-xs font-medium">
-                        {plan.period}
-                      </span>
-                    </div>
-                    <p className="text-xs text-slate-500 mt-2 min-h-[32px]">
-                      {plan.tagline}
-                    </p>
-
-                    <ul className="mt-4 space-y-2 border-t border-slate-100 pt-4 text-xs text-slate-600">
-                      {plan.features.slice(0, 4).map((f, i) => (
-                        <li key={i} className="flex items-center gap-1.5">
-                          <Check className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
-                          <span>{f.replace('- Free', '')}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <button
-                    onClick={() => navigateTo('pricing', { preselectedPlan: plan.name })}
-                    className={`mt-6 w-full py-2.5 px-4 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
-                      isPopular
-                        ? 'bg-[#EE7F23] hover:bg-[#de7016] text-white'
-                        : 'bg-slate-100 hover:bg-[#0e1e38] text-[#0e1e38] hover:text-white'
-                    }`}
-                  >
-                    <span>View Plan Details</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="text-center">
-            <button
-              onClick={() => navigateTo('pricing')}
-              className="inline-flex items-center gap-2 bg-slate-900 hover:bg-[#0e1e38] text-white text-sm font-semibold px-6 py-3 rounded-lg shadow-sm transition-all cursor-pointer"
-            >
-              <span>Compare All Plan Features & Calculate Savings</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
+          <PricingSection
+            onSelectPlan={(planName) =>
+              navigateTo('contact', { preselectedPlan: planName })
+            }
+          />
         </div>
       </section>
 
@@ -506,7 +428,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenContactModal }) => {
               <ArrowRight className="w-5 h-5" />
             </button>
             <button
-              onClick={() => navigateTo('pricing')}
+              onClick={handleScrollToPricing}
               className="bg-white/10 hover:bg-white/20 text-white font-bold text-base px-8 py-4 rounded-xl border border-white/20 transition-all cursor-pointer"
             >
               <span>Explore All Plans</span>

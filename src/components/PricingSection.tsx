@@ -1,15 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PRICING_PLANS } from '../data';
 import { PricingPlan } from '../types';
-import { Check, Sparkles, Gift, ArrowRight, ShieldCheck, Zap } from 'lucide-react';
+import {
+  Check,
+  X,
+  Sparkles,
+  Gift,
+  ArrowRight,
+  ShieldCheck,
+  Zap,
+  HelpCircle,
+  ChevronDown,
+  ChevronUp,
+} from 'lucide-react';
 
 interface PricingSectionProps {
   onSelectPlan: (planName: string) => void;
 }
 
 export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) => {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const comparisonRows = [
+    { feature: 'Dedicated Virtual Assistant', free: true, half: true, full: true, project: true },
+    { feature: 'Candidate Sourcing (Daily Profiles)', free: '10/day', half: 'Unlimited', full: 'Unlimited', project: 'Per Hour' },
+    { feature: 'Hiring Authority List Building', free: '50/day', half: 'Yes', full: 'Yes', project: 'Yes' },
+    { feature: 'Email & Phone Number Validation', free: '50/day', half: 'Yes', full: 'Yes', project: 'Yes' },
+    { feature: 'Database & ATS Maintenance', free: '50 records/day', half: 'Yes', full: 'Yes', project: 'Yes' },
+    { feature: 'Job Searches & Postings Management', free: '50 jobs/day', half: 'Yes', full: 'Yes', project: 'Yes' },
+    { feature: 'Dedicated Hours per Week', free: 'Trial', half: '20 Hours', full: '40 Hours', project: 'Flexible ($10/hr)' },
+    { feature: 'Social Media Content Marketing', free: false, half: 'Complimentary Free', full: 'Complimentary Free', project: false },
+    { feature: 'Website Design & Development', free: false, half: 'Complimentary Free', full: 'Complimentary Free', project: false },
+    { feature: 'SEO & Content Writing Support', free: false, half: 'Complimentary Free', full: 'Complimentary Free', project: false },
+    { feature: 'Graphic Design & Digital Collateral', free: false, half: 'Complimentary Free', full: 'Complimentary Free', project: false },
+    { feature: 'Commercial Video & Graphic Assets', free: false, half: 'Complimentary Free', full: 'Complimentary Free', project: false },
+    { feature: 'Daily Status Reports & Logs', free: true, half: true, full: true, project: true },
+    { feature: 'Weekly Strategic Review Meetings', free: true, half: true, full: true, project: true },
+  ];
+
+  const faqs = [
+    {
+      q: 'What is included in the 100% Free Trial?',
+      a: 'Our Free Trial gives you a hands-on experience of our dedicated research and sourcing support with zero financial commitment. Your trial assistant delivers 50 database records, 50 company lists, 50 email validations, 50 hiring authorities, and 10 candidate profiles per day, alongside daily status reporting.',
+    },
+    {
+      q: 'How does "Complimentary Services Included Free" work?',
+      a: 'Unlike agencies that bill thousands for digital marketing and web design on top of sourcing, Legacy includes custom website design & development, social media management, SEO blog writing, graphic branding, and technical support 100% complimentary with both Half-Time and Full-Time plans.',
+    },
+    {
+      q: 'Can I cancel, pause, or switch plans at any time?',
+      a: 'Yes, absolutely. All our subscriptions are month-to-month with no long-term lock-in or cancellation penalties. You can adjust your hours, add sourcers, or pause your account with simple written notice.',
+    },
+    {
+      q: 'What time zones and working hours do assistants operate in?',
+      a: 'Our dedicated assistants work seamlessly aligned with your local business hours (US Eastern, Central, Pacific, UK/GMT, and Australian time zones). We accommodate your schedule for real-time collaboration and weekly syncs.',
+    },
+    {
+      q: 'How are candidates and hiring authority contacts validated?',
+      a: 'We use premium multi-tool validation pipelines (including LinkedIn Recruiter, ZoomInfo, Apollo, Hunter, NeverBounce) along with manual human verification to ensure 98%+ email deliverability and phone accuracy.',
+    },
+  ];
+
   return (
-    <div id="pricing" className="w-full mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-slate-100">
+    <div id="pricing" className="w-full mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-slate-100 scroll-mt-24">
       {/* Top Value Banner */}
       <div className="max-w-4xl mx-auto text-center mb-10 sm:mb-14">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200/80 text-[#EE7F23] text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 shadow-xs">
@@ -41,7 +94,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
       </div>
 
       {/* 4 Plans Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-6 items-stretch">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-6 items-stretch mb-12">
         {PRICING_PLANS.map((plan: PricingPlan) => {
           const isFullTime = plan.id === 'full-time';
           const isFreeTrial = plan.id === 'free-trial';
@@ -182,8 +235,118 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
         })}
       </div>
 
+      {/* Feature Comparison Matrix */}
+      <div className="mt-14 mb-12 bg-white rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden">
+        <div className="p-6 bg-slate-50/80 border-b border-slate-200">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#EE7F23] block mb-1">
+            Side-by-Side Comparison
+          </span>
+          <h3 className="font-display text-xl sm:text-2xl font-bold text-[#0e1e38]">
+            Detailed Deliverable Matrix
+          </h3>
+          <p className="text-slate-600 text-xs sm:text-sm mt-1">
+            Compare deliverables and complimentary services across all 4 plans.
+          </p>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr className="bg-slate-50/50 border-b border-slate-200">
+                <th className="p-4 sm:p-5 font-bold text-[#0e1e38] min-w-[200px]">Deliverables & Features</th>
+                <th className="p-4 sm:p-5 font-bold text-slate-700 text-center min-w-[120px]">Free Trial ($0)</th>
+                <th className="p-4 sm:p-5 font-bold text-slate-700 text-center min-w-[130px]">Half-Time ($750)</th>
+                <th className="p-4 sm:p-5 font-bold text-[#EE7F23] text-center bg-orange-50/40 min-w-[140px]">
+                  Full-Time ($1,200) ★
+                </th>
+                <th className="p-4 sm:p-5 font-bold text-slate-700 text-center min-w-[120px]">Project ($10/hr)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100">
+              {comparisonRows.map((row, idx) => (
+                <tr key={idx} className="hover:bg-slate-50/70 transition-colors">
+                  <td className="p-4 sm:p-5 font-medium text-slate-800">
+                    {row.feature}
+                  </td>
+                  <td className="p-4 sm:p-5 text-center text-slate-600">
+                    {typeof row.free === 'boolean' ? (
+                      row.free ? <Check className="w-4 h-4 text-emerald-600 mx-auto" /> : <X className="w-4 h-4 text-slate-300 mx-auto" />
+                    ) : (
+                      <span className="font-semibold text-slate-700">{row.free}</span>
+                    )}
+                  </td>
+                  <td className="p-4 sm:p-5 text-center text-slate-600">
+                    {typeof row.half === 'boolean' ? (
+                      row.half ? <Check className="w-4 h-4 text-emerald-600 mx-auto" /> : <X className="w-4 h-4 text-slate-300 mx-auto" />
+                    ) : (
+                      <span className="font-semibold text-emerald-700">{row.half}</span>
+                    )}
+                  </td>
+                  <td className="p-4 sm:p-5 text-center bg-orange-50/20">
+                    {typeof row.full === 'boolean' ? (
+                      row.full ? <Check className="w-4 h-4 text-emerald-600 mx-auto" /> : <X className="w-4 h-4 text-slate-300 mx-auto" />
+                    ) : (
+                      <span className="font-bold text-[#EE7F23]">{row.full}</span>
+                    )}
+                  </td>
+                  <td className="p-4 sm:p-5 text-center text-slate-600">
+                    {typeof row.project === 'boolean' ? (
+                      row.project ? <Check className="w-4 h-4 text-emerald-600 mx-auto" /> : <X className="w-4 h-4 text-slate-300 mx-auto" />
+                    ) : (
+                      <span className="font-semibold text-slate-700">{row.project}</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Pricing FAQs Accordion */}
+      <div className="mt-12 max-w-4xl mx-auto">
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#EE7F23] mb-1">
+            <HelpCircle className="w-3.5 h-3.5" />
+            <span>Got Questions?</span>
+          </div>
+          <h3 className="font-display text-xl sm:text-2xl font-bold text-[#0e1e38]">
+            Frequently Asked Questions About Plans
+          </h3>
+        </div>
+
+        <div className="space-y-3">
+          {faqs.map((faq, index) => {
+            const isOpen = openFaq === index;
+            return (
+              <div
+                key={index}
+                className="border border-slate-200 rounded-xl overflow-hidden transition-all bg-white"
+              >
+                <button
+                  onClick={() => setOpenFaq(isOpen ? null : index)}
+                  className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-[#0e1e38] hover:text-[#EE7F23] transition-colors cursor-pointer"
+                >
+                  <span>{faq.q}</span>
+                  {isOpen ? (
+                    <ChevronUp className="w-4 h-4 text-[#EE7F23] flex-shrink-0" />
+                  ) : (
+                    <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />
+                  )}
+                </button>
+                {isOpen && (
+                  <div className="px-4 sm:px-5 pb-5 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100 pt-3">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Assurance Footnote */}
-      <div className="mt-8 pt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500 border-t border-slate-100">
+      <div className="mt-10 pt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500 border-t border-slate-100">
         <div className="flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-emerald-600" />
           <span>Cancel or adjust plans anytime</span>

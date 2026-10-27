@@ -97,10 +97,10 @@ export const ContactPage: React.FC = () => {
                   <h4 className="font-bold text-sm text-[#0e1e38]">Email Inquiries</h4>
                   <p className="text-xs text-slate-500 mt-0.5">Direct partnership & consultation</p>
                   <a
-                    href="mailto:hirenotm111@gmail.com"
+                    href="mailto:info@intlg.com"
                     className="font-semibold text-xs sm:text-sm text-[#EE7F23] hover:underline block mt-1"
                   >
-                    hirenotm111@gmail.com
+                    info@intlg.com
                   </a>
                 </div>
               </div>

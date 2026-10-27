@@ -3,6 +3,7 @@ import { PageId } from '../types/navigation';
 
 interface NavigationContextType {
   currentPage: PageId;
+  activeNavTab: PageId;
   navigateTo: (page: PageId, options?: { preselectedPlan?: string; preselectedService?: string }) => void;
   preselectedPlan: string;
   preselectedService: string;
@@ -12,37 +13,60 @@ interface NavigationContextType {
 
 const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
 
-function getPageFromUrl(): PageId {
-  // Check hash first (e.g. #/pricing or #pricing)
+function getPageFromUrl(): { page: PageId; isPricingHash: boolean } {
   const hash = window.location.hash.replace(/^#\/?/, '').toLowerCase();
-  const validPages: PageId[] = ['home', 'pricing', 'services', 'portfolio', 'why-legacy', 'testimonials', 'contact'];
+  
+  if (hash === 'pricing') {
+    return { page: 'home', isPricingHash: true };
+  }
+
+  const validPages: PageId[] = ['home', 'services', 'portfolio', 'why-legacy', 'testimonials', 'contact'];
   
   if (hash && validPages.includes(hash as PageId)) {
-    return hash as PageId;
+    return { page: hash as PageId, isPricingHash: false };
   }
 
-  // Check pathname (e.g. /pricing)
   const path = window.location.pathname.replace(/^\//, '').toLowerCase();
+  if (path === 'pricing') {
+    return { page: 'home', isPricingHash: true };
+  }
   if (path && validPages.includes(path as PageId)) {
-    return path as PageId;
+    return { page: path as PageId, isPricingHash: false };
   }
 
-  return 'home';
+  return { page: 'home', isPricingHash: false };
 }
 
 export const NavigationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentPage, setCurrentPage] = useState<PageId>(getPageFromUrl);
+  const initial = getPageFromUrl();
+  const [currentPage, setCurrentPage] = useState<PageId>(initial.page);
+  const [activeNavTab, setActiveNavTab] = useState<PageId>(initial.isPricingHash ? 'pricing' : initial.page);
   const [preselectedPlan, setPreselectedPlan] = useState<string>('');
   const [preselectedService, setPreselectedService] = useState<string>('');
 
   useEffect(() => {
     const handleUrlChange = () => {
-      const page = getPageFromUrl();
-      setCurrentPage(page);
+      const state = getPageFromUrl();
+      setCurrentPage(state.page);
+      setActiveNavTab(state.isPricingHash ? 'pricing' : state.page);
+      if (state.isPricingHash) {
+        setTimeout(() => {
+          const el = document.getElementById('pricing');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
     };
 
     window.addEventListener('popstate', handleUrlChange);
     window.addEventListener('hashchange', handleUrlChange);
+
+    // Initial check for #pricing
+    if (initial.isPricingHash) {
+      setTimeout(() => {
+        const el = document.getElementById('pricing');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 200);
+    }
 
     return () => {
       window.removeEventListener('popstate', handleUrlChange);
@@ -61,15 +85,30 @@ export const NavigationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       setPreselectedService(options.preselectedService);
     }
 
+    // "pricing" is kept at the front page, not a separate page
+    if (page === 'pricing') {
+      setCurrentPage('home');
+      setActiveNavTab('pricing');
+      if (window.location.hash !== '#pricing') {
+        window.history.pushState(null, '', '#pricing');
+      }
+      setTimeout(() => {
+        const el = document.getElementById('pricing');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 50);
+      return;
+    }
+
     setCurrentPage(page);
+    setActiveNavTab(page);
     const newHash = page === 'home' ? '' : `#${page}`;
     
-    // Update hash for instant back/forward and shareable URLs
     if (window.location.hash !== newHash) {
       window.history.pushState(null, '', newHash || window.location.pathname);
     }
 
-    // Scroll to top of the new page
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
@@ -77,6 +116,7 @@ export const NavigationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     <NavigationContext.Provider
       value={{
         currentPage,
+        activeNavTab,
         navigateTo,
         preselectedPlan,
         preselectedService,

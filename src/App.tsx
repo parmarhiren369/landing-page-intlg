@@ -3,7 +3,6 @@ import { NavigationProvider, useNavigation } from './context/NavigationContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
-import { PricingPage } from './pages/PricingPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { PortfolioPage } from './pages/PortfolioPage';
 import { WhyLegacyPage } from './pages/WhyLegacyPage';
@@ -17,8 +16,6 @@ const AppContent: React.FC = () => {
 
   const renderCurrentPage = () => {
     switch (currentPage) {
-      case 'pricing':
-        return <PricingPage />;
       case 'services':
         return <ServicesPage />;
       case 'portfolio':
@@ -30,7 +27,9 @@ const AppContent: React.FC = () => {
       case 'contact':
         return <ContactPage />;
       case 'home':
+      case 'pricing':
       default:
+        // Pricing is kept right at the front page, no separate page!
         return <HomePage onOpenContactModal={() => setQuickContactOpen(true)} />;
     }
   };

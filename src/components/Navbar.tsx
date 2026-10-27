@@ -9,7 +9,7 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
-  const { currentPage, navigateTo } = useNavigation();
+  const { activeNavTab, navigateTo } = useNavigation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleNavClick = (pageId: PageId) => {
@@ -33,7 +33,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
           {/* Desktop Navigation Tabs */}
           <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {NAV_ITEMS.map((item) => {
-              const isActive = currentPage === item.id;
+              const isActive = activeNavTab === item.id;
               return (
                 <button
                   key={item.id}
@@ -45,7 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
                   }`}
                 >
                   <span>{item.name}</span>
-                  {/* Dedicated Page Indicator Underline */}
+                  {/* Dedicated Tab Indicator Underline */}
                   {isActive && (
                     <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#EE7F23] rounded-full transition-all duration-300" />
                   )}
@@ -82,7 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContactModal }) => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-2 shadow-lg animate-in slide-in-from-top-2">
           {NAV_ITEMS.map((item) => {
-            const isActive = currentPage === item.id;
+            const isActive = activeNavTab === item.id;
             return (
               <button
                 key={item.id}
