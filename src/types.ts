@@ -22,6 +22,20 @@ export interface PricingPlan {
   complimentaryFeatures?: string[];
 }
 
+export interface ProjectBasisItem {
+  id: string;
+  title: string;
+  category: string;
+  badge?: string;
+  iconName: string;
+  tagline: string;
+  priceStartingAt: string;
+  turnaroundTime: string;
+  deliverables: string[];
+  idealFor: string;
+  isPopular?: boolean;
+}
+
 export interface PortfolioItem {
   id: string;
   title: string;

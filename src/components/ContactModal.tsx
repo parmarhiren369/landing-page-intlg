@@ -63,12 +63,20 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     'Full-Time Plan ($1,200/month) - Most Popular',
     'Half-Time Plan ($750/month)',
     'FREE TRIAL ($0/month)',
-    'Website Design & Development (Complimentary)',
-    'Social Media Management (Complimentary)',
-    'SEO & Content Writing (Complimentary)',
-    'Graphic Design & Branding (Complimentary)',
-    'Emails & Drip Campaigns (Complimentary)',
-    'Website & Technical Support (Complimentary)',
+    'Project Basis: Website Design & Development',
+    'Project Basis: Social Media Growth & Creative Pack',
+    'Project Basis: Candidate Sourcing & Talent Mapping Sprint',
+    'Project Basis: SEO & Search Engine Optimization Sprint',
+    'Project Basis: Executive Pitch Deck & Brand Identity Suite',
+    'Project Basis: Outbound Cold Email & Drip Campaign Setup',
+    'Project Basis: Website Maintenance & Technical Optimization',
+    'Project Basis: Custom Recruitment Automation & Integrations',
+    'Website Design & Development (Complimentary with Plan)',
+    'Social Media Management (Complimentary with Plan)',
+    'SEO & Content Writing (Complimentary with Plan)',
+    'Graphic Design & Branding (Complimentary with Plan)',
+    'Emails & Drip Campaigns (Complimentary with Plan)',
+    'Website & Technical Support (Complimentary with Plan)',
     'Custom Project / Consultation',
   ];
 
@@ -190,6 +198,9 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   className="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#EE7F23] focus:border-transparent bg-white"
                 >
                   <option value="">Select a service...</option>
+                  {formData.service && !servicesList.includes(formData.service) && (
+                    <option value={formData.service}>{formData.service}</option>
+                  )}
                   {servicesList.map((svc) => (
                     <option key={svc} value={svc}>
                       {svc}
