@@ -25,6 +25,19 @@ export const ServicesPage: React.FC = () => {
   const initialIndex = SERVICES_DATA.findIndex((s) => s.title === preselectedService);
   const [activeTab, setActiveTab] = useState<number>(initialIndex >= 0 ? initialIndex : 0);
 
+  React.useEffect(() => {
+    if (preselectedService) {
+      const idx = detailedServices.findIndex(
+        (s) =>
+          s.title.toLowerCase().includes(preselectedService.toLowerCase()) ||
+          s.id.toLowerCase().includes(preselectedService.toLowerCase())
+      );
+      if (idx >= 0) {
+        setActiveTab(idx);
+      }
+    }
+  }, [preselectedService]);
+
   const detailedServices = [
     {
       id: 'web-dev',

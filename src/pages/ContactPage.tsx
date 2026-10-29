@@ -285,7 +285,6 @@ export const ContactPage: React.FC = () => {
                       <option value="FREE TRIAL">FREE TRIAL ($0 / Month)</option>
                       <option value="Half-Time">Half-Time ($750 / Month - 20 hrs/wk)</option>
                       <option value="Full-Time">Full-Time ($1,200 / Month - 40 hrs/wk) ★</option>
-                      <option value="ADVANCED RESEARCH SUPPORT">Advanced Research ($10 / Hour)</option>
                       <option value="Custom Project">Custom Project / Multiple Assistants</option>
                     </select>
                   </div>

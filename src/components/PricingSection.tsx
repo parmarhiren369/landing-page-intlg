@@ -7,7 +7,6 @@ import {
   Gift,
   ArrowRight,
   ShieldCheck,
-  Zap,
 } from 'lucide-react';
 
 interface PricingSectionProps {
@@ -16,7 +15,7 @@ interface PricingSectionProps {
 
 export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) => {
   return (
-    <div id="pricing" className="w-full mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-slate-100 scroll-mt-24">
+    <div id="pricing" className="w-full scroll-mt-24">
       {/* Top Value Banner */}
       <div className="max-w-4xl mx-auto text-center mb-10 sm:mb-14">
         <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0e1e38] tracking-tight leading-tight mb-4">
@@ -27,23 +26,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
           Scale your candidate sourcing, hiring authority lists, and recruitment engine with a dedicated assistant.
           <span className="font-semibold text-[#0e1e38]"> All website, graphic, SEO, and social media services are 100% Complimentary (- Free)</span> with your subscription!
         </p>
-
-        {/* Pricing Highlight Pill */}
-        <div className="mt-5 inline-flex flex-wrap items-center justify-center gap-2 sm:gap-4 bg-slate-900 text-white px-4 sm:px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium shadow-md">
-          <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
-            <Zap className="w-4 h-4" /> Half-Time is now $750/month
-          </span>
-          <span className="text-slate-500">|</span>
-          <span className="flex items-center gap-1.5 text-orange-400 font-bold">
-            <Sparkles className="w-4 h-4" /> Full-Time is now $1,200/month
-          </span>
-          <span className="text-slate-500">|</span>
-          <span className="text-slate-300">Project Basis: $10/Hour</span>
-        </div>
       </div>
 
-      {/* 4 Plans Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-6 items-stretch mb-10">
+      {/* 3 Plans Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch mb-10">
         {PRICING_PLANS.map((plan: PricingPlan) => {
           const isFullTime = plan.id === 'full-time';
           const isFreeTrial = plan.id === 'free-trial';
@@ -81,12 +67,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPlan }) 
                   <h3 className="font-display text-lg font-bold text-[#0e1e38] uppercase tracking-wide text-center">
                     {plan.name}
                   </h3>
-                  {plan.originalNote ? (
-                    <p className="text-[12px] font-semibold text-[#EE7F23] mt-0.5 text-center">
-                      {plan.originalNote}
-                    </p>
-                  ) : (
-                    <p className="text-[12px] text-slate-500 mt-0.5 min-h-[18px] text-center">
+                  {plan.tagline && (
+                    <p className="text-[12px] text-slate-500 mt-1 min-h-[18px] text-center">
                       {plan.tagline}
                     </p>
                   )}

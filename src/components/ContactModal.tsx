@@ -63,7 +63,6 @@ export const ContactModal: React.FC<ContactModalProps> = ({
     'Full-Time Plan ($1,200/month) - Most Popular',
     'Half-Time Plan ($750/month)',
     'FREE TRIAL ($0/month)',
-    'ADVANCED RESEARCH SUPPORT ($10/Hour)',
     'Website Design & Development (Complimentary)',
     'Social Media Management (Complimentary)',
     'SEO & Content Writing (Complimentary)',

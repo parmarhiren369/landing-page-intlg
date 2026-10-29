@@ -4,11 +4,20 @@ import { PageId } from '../types/navigation';
 interface NavigationContextType {
   currentPage: PageId;
   activeNavTab: PageId;
-  navigateTo: (page: PageId, options?: { preselectedPlan?: string; preselectedService?: string }) => void;
+  navigateTo: (
+    page: PageId,
+    options?: {
+      preselectedPlan?: string;
+      preselectedService?: string;
+      portfolioCategory?: string;
+    }
+  ) => void;
   preselectedPlan: string;
   preselectedService: string;
+  portfolioCategory: string;
   setPreselectedPlan: (plan: string) => void;
   setPreselectedService: (service: string) => void;
+  setPortfolioCategory: (category: string) => void;
 }
 
 const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
@@ -43,6 +52,7 @@ export const NavigationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const [activeNavTab, setActiveNavTab] = useState<PageId>(initial.isPricingHash ? 'pricing' : initial.page);
   const [preselectedPlan, setPreselectedPlan] = useState<string>('');
   const [preselectedService, setPreselectedService] = useState<string>('');
+  const [portfolioCategory, setPortfolioCategory] = useState<string>('');
 
   useEffect(() => {
     const handleUrlChange = () => {
@@ -76,13 +86,20 @@ export const NavigationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
   const navigateTo = (
     page: PageId,
-    options?: { preselectedPlan?: string; preselectedService?: string }
+    options?: {
+      preselectedPlan?: string;
+      preselectedService?: string;
+      portfolioCategory?: string;
+    }
   ) => {
     if (options?.preselectedPlan) {
       setPreselectedPlan(options.preselectedPlan);
     }
     if (options?.preselectedService) {
       setPreselectedService(options.preselectedService);
+    }
+    if (options?.portfolioCategory) {
+      setPortfolioCategory(options.portfolioCategory);
     }
 
     // "pricing" is kept at the front page, not a separate page
@@ -120,8 +137,10 @@ export const NavigationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         navigateTo,
         preselectedPlan,
         preselectedService,
+        portfolioCategory,
         setPreselectedPlan,
         setPreselectedService,
+        setPortfolioCategory,
       }}
     >
       {children}

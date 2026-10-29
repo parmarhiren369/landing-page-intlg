@@ -1,16 +1,13 @@
 import React from 'react';
 import { HeroVisual } from '../components/HeroVisual';
 import { PricingSection } from '../components/PricingSection';
-import { HERO_SERVICE_TICKER, SERVICES_DATA, PORTFOLIO_DATA, TESTIMONIALS_DATA } from '../data';
+import { HERO_SERVICE_TICKER, PORTFOLIO_DATA, TESTIMONIALS_DATA } from '../data';
 import { useNavigation } from '../context/NavigationContext';
 import {
   ArrowRight,
   Sparkles,
-  Check,
-  Gift,
   Star,
   Layers,
-  ChevronRight,
   ExternalLink,
 } from 'lucide-react';
 
@@ -28,10 +25,51 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenContactModal }) => {
     }
   };
 
+  const handleTickerClick = (item: string) => {
+    const normalized = item.trim().toUpperCase();
+    switch (normalized) {
+      case 'WEBSITES':
+        // Redirect to respective showcase on portfolio page (Web Development live sites)
+        navigateTo('portfolio', { portfolioCategory: 'Web Development' });
+        break;
+
+      case 'SOCIAL MEDIA':
+        // Redirect to respective showcase on portfolio page (Social Media campaigns)
+        navigateTo('portfolio', { portfolioCategory: 'Social Media' });
+        break;
+
+      case 'SEO':
+        // Redirect to respective page on services (SEO & Content Writing)
+        navigateTo('services', { preselectedService: 'SEO & Content Writing' });
+        break;
+
+      case 'DESIGN':
+        // Redirect to respective page on services (Graphic Design & Branding)
+        navigateTo('services', { preselectedService: 'Graphic Design & Branding' });
+        break;
+
+      case 'MARKETING':
+        // Redirect to respective page on services (Emails & Drip Campaigns)
+        navigateTo('services', { preselectedService: 'Emails & Drip Campaigns' });
+        break;
+
+      case 'MAINTENANCE':
+        // Redirect to respective page on services (Website & Technical Support)
+        navigateTo('services', { preselectedService: 'Website & Technical Support' });
+        break;
+
+      case 'CONTENT':
+      default:
+        // Does not have a dedicated page -> redirect to portfolio page per instructions
+        navigateTo('portfolio', { portfolioCategory: 'All Work' });
+        break;
+    }
+  };
+
   return (
     <div className="bg-white">
       {/* ================= HERO SECTION ================= */}
-      <section className="relative bg-white pt-8 sm:pt-12 lg:pt-16 pb-12 sm:pb-16 overflow-hidden">
+      <section className="relative bg-white pt-8 sm:pt-12 lg:pt-16 pb-4 sm:pb-5 overflow-hidden">
         {/* Subtle ambient background aura */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-orange-50/40 rounded-full blur-3xl -z-10 pointer-events-none" />
         <div className="absolute top-40 left-0 w-80 h-80 bg-slate-50/60 rounded-full blur-3xl -z-10 pointer-events-none" />
@@ -57,41 +95,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenContactModal }) => {
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 mb-8 sm:mb-10">
-                <button
-                  onClick={handleScrollToPricing}
-                  className="group inline-flex items-center justify-center gap-2 bg-[#EE7F23] hover:bg-[#de7016] active:bg-[#c9610f] text-white text-[15px] font-semibold px-6 sm:px-7 py-3.5 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer"
+              <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 mb-2">
+                <a
+                  href="https://calendly.com/raj-kapoor"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center justify-center gap-2 bg-[#EE7F23] hover:bg-[#de7016] active:bg-[#c9610f] text-white text-[15px] font-semibold px-7 py-3.5 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer"
                 >
-                  <span>View Plans & Pricing</span>
+                  <span>Let's Work Together</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </button>
-
-                <button
-                  onClick={() => navigateTo('contact')}
-                  className="inline-flex items-center justify-center text-[#0e1e38] hover:text-[#EE7F23] bg-white hover:bg-slate-50 active:bg-slate-100 text-[15px] font-semibold px-6 sm:px-7 py-3.5 rounded-lg border border-slate-200 hover:border-slate-300 shadow-xs transition-all duration-200 cursor-pointer"
-                >
-                  Let's Work Together
-                </button>
-
-                <button
-                  onClick={() => navigateTo('portfolio')}
-                  className="inline-flex items-center justify-center text-slate-600 hover:text-[#0e1e38] text-[14px] font-medium px-4 py-2 transition-colors cursor-pointer"
-                >
-                  Explore Portfolio
-                </button>
-              </div>
-
-              {/* Quick Trust Badges */}
-              <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-slate-100 text-xs font-semibold text-slate-500">
-                <span className="flex items-center gap-1.5 text-emerald-600">
-                  <Check className="w-4 h-4 stroke-[2.5]" /> 100% Free Trial Available
-                </span>
-                <span className="flex items-center gap-1.5 text-slate-700">
-                  <Check className="w-4 h-4 text-emerald-600 stroke-[2.5]" /> No Long-term Lock-in
-                </span>
-                <span className="flex items-center gap-1.5 text-[#EE7F23]">
-                  <Gift className="w-4 h-4" /> Free Website & Social Included
-                </span>
+                </a>
               </div>
             </div>
 
@@ -102,15 +115,22 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenContactModal }) => {
           </div>
 
           {/* Service Ticker */}
-          <div className="mt-14 sm:mt-18 pt-8 border-t border-slate-100">
-            <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-3 sm:gap-x-4 text-center">
+          <div className="mt-8 sm:mt-10 pt-5 sm:pt-6 border-t border-slate-100">
+            <div className="flex flex-wrap items-center justify-center gap-y-2 gap-x-2 sm:gap-x-3 text-center">
               {HERO_SERVICE_TICKER.map((item, index) => (
                 <React.Fragment key={item}>
-                  <span className="text-[11px] sm:text-[12px] font-bold tracking-[0.2em] text-[#0e1e38]/85 uppercase">
-                    {item}
-                  </span>
+                  <button
+                    type="button"
+                    onClick={() => handleTickerClick(item)}
+                    title={`View ${item} details & work`}
+                    className="text-[11px] sm:text-[12px] font-bold tracking-[0.18em] sm:tracking-[0.2em] text-[#0e1e38]/85 hover:text-[#EE7F23] hover:bg-orange-50/70 transition-all duration-200 uppercase py-1 px-2 rounded-md cursor-pointer group"
+                  >
+                    <span className="group-hover:underline underline-offset-4 decoration-[#EE7F23]">
+                      {item}
+                    </span>
+                  </button>
                   {index < HERO_SERVICE_TICKER.length - 1 && (
-                    <span className="text-[#EE7F23] font-bold text-xs">|</span>
+                    <span className="text-[#EE7F23] font-bold text-xs select-none">|</span>
                   )}
                 </React.Fragment>
               ))}
@@ -119,9 +139,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenContactModal }) => {
         </div>
       </section>
 
-
       {/* ================= PLANS & PRICING SECTION ================= */}
-      <section className="bg-white py-16 sm:py-20 border-t border-slate-100">
+      <section className="bg-white pt-4 sm:pt-6 pb-16 sm:pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <PricingSection
             onSelectPlan={(planName) =>

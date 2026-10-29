@@ -37,9 +37,10 @@ export const TestimonialsSection: React.FC = () => {
 
               {/* Author & Rating Row */}
               <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                <span className="font-sans font-bold text-sm text-[#0e1e38]">
-                  {item.authorRole}
-                </span>
+                <div>
+                  <h4 className="font-sans font-bold text-sm text-[#0e1e38]">{item.authorName}</h4>
+                  <p className="text-xs text-slate-500">{item.authorRole} • {item.company}</p>
+                </div>
 
                 {/* 5 Gold Stars */}
                 <div className="flex items-center space-x-1 text-[#EE7F23]">

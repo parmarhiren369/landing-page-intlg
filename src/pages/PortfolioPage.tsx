@@ -18,13 +18,21 @@ import {
 } from 'lucide-react';
 
 export const PortfolioPage: React.FC = () => {
-  const { navigateTo } = useNavigation();
+  const { navigateTo, portfolioCategory, setPortfolioCategory } = useNavigation();
 
-  const [selectedCategory, setSelectedCategory] = useState<string>('All Work');
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    portfolioCategory || 'All Work'
+  );
   const [socialSearch, setSocialSearch] = useState<string>('');
   const [lightboxImage, setLightboxImage] = useState<SocialMediaImage | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number>(0);
   const [selectedPortfolioModalItem, setSelectedPortfolioModalItem] = useState<PortfolioItem | null>(null);
+
+  React.useEffect(() => {
+    if (portfolioCategory) {
+      setSelectedCategory(portfolioCategory);
+    }
+  }, [portfolioCategory]);
 
   const categories = [
     { label: 'All Work', value: 'All Work' },
@@ -80,7 +88,10 @@ export const PortfolioPage: React.FC = () => {
               return (
                 <button
                   key={cat.value}
-                  onClick={() => setSelectedCategory(cat.value)}
+                  onClick={() => {
+                    setSelectedCategory(cat.value);
+                    setPortfolioCategory(cat.value);
+                  }}
                   className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                     isSelected
                       ? 'bg-[#0e1e38] text-white shadow-sm'
@@ -258,6 +269,37 @@ export const PortfolioPage: React.FC = () => {
                 </div>
               ))}
             </div>
+
+            {/* If category has no standalone cards, show informative showcase */}
+            {filteredPortfolioCards.length === 0 && selectedCategory !== 'Social Media' && (
+              <div className="text-center py-12 px-6 bg-slate-50 rounded-2xl border border-slate-200 text-slate-600 max-w-xl mx-auto my-6">
+                <Sparkles className="w-8 h-8 text-[#EE7F23] mx-auto mb-3" />
+                <h4 className="font-display text-lg font-bold text-[#0e1e38] mb-1">
+                  {selectedCategory} Work & Capabilities
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-500 mb-5">
+                  {selectedCategory} is delivered as a 100% complimentary service bundled with our virtual assistant subscriptions.
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <button
+                    onClick={() => navigateTo('services')}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#EE7F23] text-white rounded-lg text-xs font-bold hover:bg-[#de7016] transition-colors cursor-pointer"
+                  >
+                    <span>View Complimentary Services</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSelectedCategory('All Work');
+                      setPortfolioCategory('All Work');
+                    }}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-white border border-slate-200 text-slate-700 rounded-lg text-xs font-bold hover:bg-slate-50 transition-colors cursor-pointer"
+                  >
+                    <span>View All Work</span>
+                  </button>
+                </div>
+              </div>
+            )}
 
             {/* Teaser for 60+ Social Media Campaigns when viewing All Work */}
             {selectedCategory === 'All Work' && (
